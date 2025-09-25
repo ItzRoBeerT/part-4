@@ -77,7 +77,6 @@ describe('most blogs', () => {
 			author: 'Edsger W. Dijkstra',
 			url: 'https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf',
 			likes: 5,
-			blogs: 1,
 			__v: 0,
 		},
 		{
@@ -86,7 +85,6 @@ describe('most blogs', () => {
 			author: 'Edsger W. Dijkstra',
 			url: 'https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf',
 			likes: 10,
-			blogs: 3,
 			__v: 0,
 		},
 		{
@@ -95,16 +93,14 @@ describe('most blogs', () => {
 			author: 'Edsger W. Dijkstra',
 			url: 'https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf',
 			likes: 15,
-			blogs: 2,
 			__v: 0,
 		},
 		{
 			_id: '5a422aa71b54a676234d17f1',
 			title: 'Go To Statement Considered Harmful 4',
-			author: 'Edsger W. Dijkstra',
+			author: 'Roberto',
 			url: 'https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf',
 			likes: 0,
-			blogs: 0,
 			__v: 0,
 		},
 	];
