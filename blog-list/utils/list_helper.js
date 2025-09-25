@@ -35,18 +35,31 @@ const mostBlogs = (blogs = []) => {
 		}
 	});
 
-  const maxBlogs = Math.max(...authorBlogCount.map((author) => author.blogs));
+	const maxBlogs = Math.max(...authorBlogCount.map((author) => author.blogs));
 
 	let mostBlogsAuthor = authorBlogCount.find((author) => author.blogs === maxBlogs);
-  
+
 	return mostBlogsAuthor;
 };
 
 const mostLikes = (blogs = []) => {
-	let mostLikedAuthor = {
-		author: '',
-		likes: 0,
+	let initialValue = {
+		counts: {},
+		maxLikes: 0,
+		maxAuthor: null,
 	};
+
+	const result = blogs.reduce((acc, blog) => {
+		acc.counts[blog.author] = (acc.counts[blog.author] || 0) + (blog.likes || 0);
+
+		if (acc.counts[blog.author] > acc.maxLikes) {
+			acc.maxLikes = acc.counts[blog.author];
+			acc.maxAuthor = blog.author;
+		}
+		return acc;
+	}, initialValue);
+
+	return { author: result.maxAuthor, likes: result.maxLikes };
 };
 
 module.exports = {
