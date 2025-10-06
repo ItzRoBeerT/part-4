@@ -62,10 +62,15 @@ const mostLikes = (blogs = []) => {
 	return { author: result.maxAuthor, likes: result.maxLikes };
 };
 
+const deleteBlog = (blogs, id) => {
+	return blogs.filter((blog) => blog._id !== id);
+}
+
 module.exports = {
 	dummy,
 	totalLikes,
 	favoriteBlog,
 	mostBlogs,
 	mostLikes,
+	deleteBlog,
 };
