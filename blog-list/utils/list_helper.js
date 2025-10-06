@@ -64,7 +64,16 @@ const mostLikes = (blogs = []) => {
 
 const deleteBlog = (blogs, id) => {
 	return blogs.filter((blog) => blog._id !== id);
-}
+};
+
+const updateBlog = (blogs = [], id, newBlog) => {
+	return blogs.map((blog) => {
+		if (blog._id === id) {
+			return { ...blog, ...newBlog }; 
+		}
+		return blog;
+	});
+};
 
 module.exports = {
 	dummy,
@@ -73,4 +82,5 @@ module.exports = {
 	mostBlogs,
 	mostLikes,
 	deleteBlog,
+	updateBlog
 };
