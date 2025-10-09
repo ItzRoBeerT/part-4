@@ -12,11 +12,7 @@ blogsRouter.get('/', async (request, response) => {
 blogsRouter.post('/', async (request, response) => {
 	const body = request.body;
 
-	const decodedToken = jwt.verify(request.token, process.env.SECRET);
-	if (!decodedToken.id) {
-		return response.status(401).json({ error: 'token invalid' });
-	}
-	const user = await User.findById(decodedToken.id);
+	const user = request.user;
 
 	if (!user) {
 		return response.status(400).json({ error: 'Invalid userId' });
@@ -38,22 +34,14 @@ blogsRouter.post('/', async (request, response) => {
 });
 
 blogsRouter.delete('/:id', async (request, response) => {
-	const token = request.token;
-	if (!token) {
-		return response.status(401).json({ error: 'token missing' });
-	}
-
-	const decodedToken = jwt.verify(token, process.env.SECRET);
-	if (!decodedToken.id) {
-		return response.status(401).json({ error: 'token invalid' });
+	const user = request.user;
+	if (!user) {
+		return response.status(401).json({ error: 'token missing or invalid' });
 	}
 
 	const blog = await Blog.findById(request.params.id);
-	if (!blog) {
-		return response.status(404).json({ error: 'blog not found' });
-	}
 
-	if (blog.user.toString() !== decodedToken.id) {
+	if (blog.user.toString() !== user.id) {
 		return response.status(403).json({
 			error: 'only the creator can delete this blog',
 		});
